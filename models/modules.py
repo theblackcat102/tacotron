@@ -37,7 +37,7 @@ def cbhg(inputs, input_lengths, is_training, scope, K, projections):
     with tf.variable_scope('conv_bank'):
       # Convolution bank: concatenate on the last axis to stack channels from all convolutions
       conv_outputs = tf.concat(
-        [conv1d(inputs, k, 128, tf.nn.relu, is_training, 'conv1d_%d' % k) for k in range(1, K+1)],
+        [conv1d(inputs, k, 256, tf.nn.relu, is_training, 'conv1d_%d' % k) for k in range(1, K+1)],
         axis=-1
       )
 
@@ -66,8 +66,8 @@ def cbhg(inputs, input_lengths, is_training, scope, K, projections):
 
     # Bidirectional RNN
     outputs, states = tf.nn.bidirectional_dynamic_rnn(
-      GRUCell(128),
-      GRUCell(128),
+      GRUCell(256),
+      GRUCell(256),
       rnn_input,
       sequence_length=input_lengths,
       dtype=tf.float32)
