@@ -15,7 +15,7 @@ hparams = tf.contrib.training.HParams(
   frame_shift_ms=12.5,
   preemphasis=0.97,
   min_level_db=-100,
-  ref_level_db=20,
+  ref_level_db=15,
 
   # Model:
   # TODO: add more configurable hparams
